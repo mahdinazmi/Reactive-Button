@@ -7,7 +7,7 @@ import '../bloc/button_state.dart';
 
 class ReactiveButton extends StatelessWidget {
   final Future<void> Function() onPressed;
-  final String title;
+  final String ? title;
   final double ? height;
   final double ? width;
   final Color ? activeColor;
@@ -17,10 +17,10 @@ class ReactiveButton extends StatelessWidget {
     required this.onPressed,
     required this.onSuccess,
     required this.onFailure,
-    required this.activeColor,
-    this.title = '',
+    this.title,
     this.height,
     this.width,
+    this.activeColor,
     super.key
   });
 
@@ -62,36 +62,24 @@ class ReactiveButton extends StatelessWidget {
   }
 
   Widget _initial(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: activeColor?.withOpacity(0.8) ?? const Color(0xff3461FD).withOpacity(0.8),
-            offset: const Offset(0, 5),
-            blurRadius: 17,
-          )
-        ]
-      ),
-      child: ElevatedButton(
-        onPressed: (){
-           context.read<ButtonCubit>().execute(onPressed);
-        },
-        style: ElevatedButton.styleFrom(
-          backgroundColor: activeColor ?? const Color(0xff3461FD),
-          minimumSize: Size(
-            width ?? MediaQuery.of(context).size.width,
-            height ?? 60
-          ),
+    return ElevatedButton(
+      onPressed: (){
+        context.read<ButtonCubit>().execute(onPressed);
+      },
+      style: ElevatedButton.styleFrom(
+        backgroundColor: activeColor ?? const Color(0xff3461FD),
+        minimumSize: Size(
+          width ?? MediaQuery.of(context).size.width,
+          height ?? 60
         ),
-        child: Text(
-          title,
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w400
-          ),
-        )
       ),
+      child: Text(
+        title ?? 'Submit',
+        style: const TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.w400
+        ),
+      )
     );
   }
 }

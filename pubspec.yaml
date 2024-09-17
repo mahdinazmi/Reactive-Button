@@ -1,6 +1,6 @@
 name: reactive_button
 description: "Reactive Button"
-version: 0.0.1
+version: 0.0.3
 repository: "https://github.com/mahdinazmi/Reactive-Button"
 
 environment:

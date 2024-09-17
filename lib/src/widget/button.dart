@@ -10,12 +10,14 @@ class ReactiveButton extends StatelessWidget {
   final String title;
   final double ? height;
   final double ? width;
-  final VoidCallback? onSuccess;
-  final Function(String error)? onFailure;
+  final Color ? activeColor;
+  final VoidCallback onSuccess;
+  final Function(String error) onFailure;
   const ReactiveButton({
     required this.onPressed,
     required this.onSuccess,
     required this.onFailure,
+    required this.activeColor,
     this.title = '',
     this.height,
     this.width,
@@ -29,9 +31,9 @@ class ReactiveButton extends StatelessWidget {
       child: BlocConsumer < ButtonCubit, ButtonState > (
         listener: (context, state) {
           if (state is ButtonSuccessState) {
-            onSuccess!();
+            onSuccess();
           } else if (state is ButtonFailureState) {
-            onFailure!(state.errorMessage);
+            onFailure(state.errorMessage);
           }
         },
         builder: (context, state) {
@@ -65,9 +67,9 @@ class ReactiveButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xff3461FD).withOpacity(0.8),
-              offset: const Offset(0, 5),
-                blurRadius: 17,
+            color: activeColor?.withOpacity(0.8) ?? const Color(0xff3461FD).withOpacity(0.8),
+            offset: const Offset(0, 5),
+            blurRadius: 17,
           )
         ]
       ),
@@ -76,6 +78,7 @@ class ReactiveButton extends StatelessWidget {
            context.read<ButtonCubit>().execute(onPressed);
         },
         style: ElevatedButton.styleFrom(
+          backgroundColor: activeColor ?? const Color(0xff3461FD),
           minimumSize: Size(
             width ?? MediaQuery.of(context).size.width,
             height ?? 60

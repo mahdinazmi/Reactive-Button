@@ -18,3 +18,45 @@ dependencies:
   ```
 
 Run `flutter pub get` to install the package.
+
+## Usage
+
+Here is an example of how to use the `Reactive Button` widget:
+
+```dart
+import 'package:reactive_button/reactive_button.dart';
+import 'package:flutter/material.dart';
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Custom Button Example'),
+      ),
+      body: Center(
+        child: ReactiveButton(
+          onPressed: onPressed,
+          title: 'Submit',
+          onSuccess: () {
+            print('Action succeeded!');
+          },
+          onFailure: (String error) {
+            print('Action failed: $error');
+          },
+        ),
+      ),
+    );
+  }
+}
+```

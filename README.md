@@ -1,39 +1,65 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Reactive Button Package
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+This package provides a customizable button widget with built-in loading, success, and failure states. It's designed to work with Flutter's `Bloc` architecture and allows you to pass your own functions for handling success and failure.
 
 ## Features
+- Display a loading indicator when the button is pressed.
+- Automatically handle success and failure states.
+- Pass custom actions to be executed on button press.
+- Easily customize what happens when the action succeeds or fails via callbacks.
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+## Installation
 
-## Getting started
+Add this to your package's `pubspec.yaml` file:
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+```yaml
+dependencies:
+  reactive_button: ^0.0.1
+
+Run `flutter pub get` to install the package.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+Here is an example of how to use the `Reactive Button` widget:
 
 ```dart
-const like = 'sample';
+import 'package:reactive_button/reactive_button.dart';
+import 'package:flutter/material.dart';
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Custom Button Example'),
+      ),
+      body: Center(
+        child: ReactiveButton(
+          onPressed: onPressed,
+          title: 'Submit',
+          onSuccess: () {
+            print('Action succeeded!');
+          },
+          onFailure: (String error) {
+            print('Action failed: $error');
+          },
+        ),
+      ),
+    );
+  }
+}
 ```
 
-## Additional information
+## License
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+This package is licensed under the MIT License.  

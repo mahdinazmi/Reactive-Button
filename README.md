@@ -1,4 +1,4 @@
-# Reactive Button Package
+# Reactive Button
 
 This package provides a customizable button widget with built-in loading, success, and failure states. It's designed to work with Flutter's `Bloc` architecture and allows you to pass your own functions for handling success and failure.
 
@@ -14,7 +14,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```dart
 dependencies:
-  reactive_button: ^0.0.1
+  reactive_button: "latest version"
   ```
 
 Run `flutter pub get` to install the package.

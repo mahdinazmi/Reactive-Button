@@ -1,4 +1,7 @@
-### 0.0.5
+### 0.0.7
+- Changelog updated
+
+### 0.0.6
 - Change Function type to Future 
 
 ### 0.0.5

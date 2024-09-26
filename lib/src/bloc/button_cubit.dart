@@ -5,13 +5,17 @@ import 'button_state.dart';
 class ButtonCubit extends Cubit<ButtonState> {
   ButtonCubit() : super(ButtonInitialState());
 
-  Future<void> execute(Function asyncFunction) async {
+  Future<void> execute(Future asyncFunction) async {
     emit(ButtonLoadingState());
     try {
-      Either result = await asyncFunction();
+      Either result = await asyncFunction;
       result.fold(
-        (error) => emit(ButtonFailureState(errorMessage: error)),
-        (data) => emit(ButtonSuccessState())
+        (error) {
+          emit(ButtonFailureState(errorMessage: error));
+        },
+        (data) {
+          emit(ButtonSuccessState());
+        }
       );
       emit(ButtonSuccessState());
     } catch (e) {

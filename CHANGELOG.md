@@ -1,3 +1,6 @@
+### 0.0.8
+- Change type of Function
+
 ### 0.0.7
 - Changelog updated
 

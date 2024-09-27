@@ -6,7 +6,7 @@ import '../bloc/button_state.dart';
 
 
 class ReactiveButton extends StatelessWidget {
-  final Future onPressed;
+  final Future Function() onPressed;
   final String ? title;
   final double ? height;
   final double ? width;

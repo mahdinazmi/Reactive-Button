@@ -1,3 +1,6 @@
+### 0.0.9
+- Fix onFailure Bug
+
 ### 0.0.8
 - Change type of Function
 
